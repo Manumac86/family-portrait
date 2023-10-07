@@ -14,6 +14,7 @@ export default function Header() {
           <ul className={styles.nav}>
             <li> <a href="/">Home</a> </li>
             <li> <a href="/team">Team</a> </li>
+            <li> <a href="/users">Users</a> </li>
             <li> <a href="/help">FAQ</a> </li>
           </ul>
         </nav>

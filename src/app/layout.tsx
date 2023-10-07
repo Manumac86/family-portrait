@@ -2,13 +2,14 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from './components/Header'
-
+import Providers from './providers/Providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Family Portrait App',
-  description: 'MAde with :heart: by @manumac86',
+  description: 'Made with :heart: by @manumac86',
 }
+
 
 export default function RootLayout({
   children,
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {children}
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   )
