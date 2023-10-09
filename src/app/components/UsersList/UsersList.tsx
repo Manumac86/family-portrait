@@ -3,10 +3,11 @@ import Image from 'next/image'
 import useUsers from '@/app/hooks/useUsers'
 import styles from './styles.module.css'
 import Link from 'next/link'
-export default function UsersList() {
+
+export default function UsersList () {
   const { users, loading } = useUsers({})
 
-  if(loading) return <p>Loading...</p>
+  if (loading) return <p>Loading...</p>
 
   return (
     <div className={styles.usersList}>

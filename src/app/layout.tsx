@@ -1,24 +1,21 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Header from './components/Header'
 import Providers from './providers/Providers'
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Family Portrait App',
-  description: 'Made with :heart: by @manumac86',
+  description: 'Made with :heart: by @manumac86'
 }
 
-
-export default function RootLayout({
-  children,
+export default function RootLayout ({
+  children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html className="dark" lang="en">
+      <body className='dark:bg-gray-900 dark:text-gray-200'>
         <Providers>
           <Header />
           {children}

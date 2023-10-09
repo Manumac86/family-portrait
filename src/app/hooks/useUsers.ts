@@ -1,28 +1,28 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { getUsers, getUser } from '../services/users';
-import { User } from '../types/users';
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { getUsers, getUser } from '../services/users'
+import { type User } from '../types/users'
 
-export default function useUsers({ id }: { id?: string }) {
-  const [selectedUser, setSelectedUser] = useState<User>();
+export default function useUsers ({ id }: { id?: string }) {
+  const [selectedUser, setSelectedUser] = useState<User>()
 
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ["hydrate-users"],
-    queryFn: () => getUsers(),
-    enabled: !id
-  });
+    queryKey: ['hydrate-users'],
+    queryFn: async () => await getUsers(),
+    enabled: !!(id == null)
+  })
 
   const { isLoading: isLoadingUser } = useQuery({
-    queryKey: ["user", id],
-    queryFn: () => getUser(id),
+    queryKey: ['user', id],
+    queryFn: async () => await getUser(id),
     onSuccess: (user) => {
-      const userData = user ?? {} as User;
+      const userData: User = user ?? {}
       setSelectedUser(userData)
     },
-    enabled: !!id
-  });
+    enabled: !(id == null)
+  })
 
-  return { users: data, loading: isFetching  || isLoading, loadingUser: isLoadingUser, selectedUser: selectedUser }
+  return { users: data, loading: isFetching || isLoading, loadingUser: isLoadingUser, selectedUser }
 }
